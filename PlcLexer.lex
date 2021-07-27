@@ -16,10 +16,15 @@ fun keyword (s, lpos, rpos) =
         | "if" => IF (lpos, rpos)
         | "then" => THEN (lpos, rpos)
         | "else" => ELSE (lpos, rpos)
+        | "fun" => FUN(lpos, rpos)
+        | "rec" => REC(lpos, rpos)
         | "match" => MATCH (lpos, rpos)
         | "with" => WITH (lpos, rpos)
         | "end" => END (lpos, rpos)
         | "_" => UNDERLINE (lpos, rpos)
+        | "Nil" => NIL(lpos, rpos)
+        | "Bool" => BOOL(lpos, rpos)
+        | "Int" => INT(lpos, rpos)
         | _ => NAME (s, lpos, rpos)
 
 val error = fn x => TextIO.output(TextIO.stdOut, x ^ "\n")
@@ -63,6 +68,7 @@ boolean=(true)|(false);
 {digit}+ => (CINT(strToInt(yytext), yypos, yypos));
 {boolean}+ => (CBOOL(strToBool(yytext), yypos, yypos));
 {identifier} => (keyword(yytext, yypos, yypos));
+":" => (COLON(yypos, yypos));
 "+" => (PLUS(yypos, yypos));
 "-" => (MINUS(yypos, yypos));
 "*" => (MULT(yypos, yypos));
@@ -71,11 +77,16 @@ boolean=(true)|(false);
 ";" => (SEMIC(yypos, yypos));
 "(" => (LPAR(yypos, yypos));
 ")" => (RPAR(yypos, yypos));
+"[" => (LSBRACKET(yypos, yypos));
+"]" => (RSBRACKET(yypos, yypos));
+"{" => (LCBRACES(yypos, yypos));
+"}" => (RCBRACES(yypos, yypos));
 "<" => (LESS(yypos, yypos));
 "!" => (NEGATION(yypos, yypos));
 "&&" => (AND(yypos, yypos));
 "<=" => (LESSEQUAL(yypos, yypos));
 "->" => (ARROW(yypos, yypos));
 "|" => (PIPE(yypos, yypos));
+"," => (COMMA(yypos, yypos));
 . => (error("\n *** Lexer error: character invalid ***\n "); raise
 Fail("Lexer error: character invalid" ^yytext));
