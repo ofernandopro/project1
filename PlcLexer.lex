@@ -16,6 +16,10 @@ fun keyword (s, lpos, rpos) =
         | "if" => IF (lpos, rpos)
         | "then" => THEN (lpos, rpos)
         | "else" => ELSE (lpos, rpos)
+        | "match" => MATCH (lpos, rpos)
+        | "with" => WITH (lpos, rpos)
+        | "end" => END (lpos, rpos)
+        | "_" => UNDERLINE (lpos, rpos)
         | _ => NAME (s, lpos, rpos)
 
 val error = fn x => TextIO.output(TextIO.stdOut, x ^ "\n")
@@ -71,5 +75,7 @@ boolean=(true)|(false);
 "!" => (NEGATION(yypos, yypos));
 "&&" => (AND(yypos, yypos));
 "<=" => (LESSEQUAL(yypos, yypos));
+"->" => (ARROW(yypos, yypos));
+"|" => (PIPE(yypos, yypos));
 . => (error("\n *** Lexer error: character invalid ***\n "); raise
 Fail("Lexer error: character invalid" ^yytext));

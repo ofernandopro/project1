@@ -10,11 +10,13 @@
     | IF | THEN | ELSE
     | PLUS | MINUS | MULT | DIV | EQ | LESS | LESSEQUAL | NEGATION
     | LPAR | RPAR
-    | SEMIC
+    | MATCH | WITH | END
+    | SEMIC | ARROW | PIPE | UNDERLINE
     | NAME of string | CINT of int | CBOOL of bool
     | EOF
 
-%nonterm Prog of expr | Expr of expr | AtomExpr of expr | Const of expr
+%nonterm Prog of expr | Expr of expr | AtomExpr of expr | Const of expr 
+    | MatchExpr of (expr option * expr) list | CondExpr of expr option
 
 %right SEMIC
 %left AND PLUS MINUS MULT DIV LESSEQUAL NEGATION EQ LESS
@@ -44,6 +46,7 @@ Expr : AtomExpr (AtomExpr)
     | MINUS Expr (Prim1("-", Expr))
     | NEGATION Expr (Prim1("!", Expr1))
     | Expr AND Expr (Prim2("&&", Expr1, Expr2))
+    | MATCH Expr WITH MatchExpr (Match(Expr, MatchExpr))
 
 AtomExpr : Const (Const)
     | NAME (Var(NAME))
@@ -51,3 +54,9 @@ AtomExpr : Const (Const)
 
 Const : CINT (ConI(CINT))
     | CBOOL (ConB(CBOOL))
+
+MatchExpr : END ([])
+	| PIPE CondExpr ARROW Expr MatchExpr ((CondExpr, Expr)::MatchExpr)
+
+CondExpr : Expr (SOME(Expr))
+	| UNDERLINE (NONE)

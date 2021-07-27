@@ -6,7 +6,13 @@ val EOF:  'a * 'a -> (svalue,'a) token
 val CBOOL: (bool) *  'a * 'a -> (svalue,'a) token
 val CINT: (int) *  'a * 'a -> (svalue,'a) token
 val NAME: (string) *  'a * 'a -> (svalue,'a) token
+val UNDERLINE:  'a * 'a -> (svalue,'a) token
+val PIPE:  'a * 'a -> (svalue,'a) token
+val ARROW:  'a * 'a -> (svalue,'a) token
 val SEMIC:  'a * 'a -> (svalue,'a) token
+val END:  'a * 'a -> (svalue,'a) token
+val WITH:  'a * 'a -> (svalue,'a) token
+val MATCH:  'a * 'a -> (svalue,'a) token
 val RPAR:  'a * 'a -> (svalue,'a) token
 val LPAR:  'a * 'a -> (svalue,'a) token
 val NEGATION:  'a * 'a -> (svalue,'a) token
