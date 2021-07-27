@@ -15,12 +15,23 @@
     | NAME of string | CINT of int | CBOOL of bool
     | EOF
 
-%nonterm Prog of expr | Expr of expr | AtomExpr of expr | Const of expr 
-    | MatchExpr of (expr option * expr) list | CondExpr of expr option
+%nonterm Prog of expr 
+    | Expr of expr 
+    | AtomExpr of expr 
+    | Const of expr 
+    | MatchExpr of (expr option * expr) list 
+    | CondExpr of expr option
 
-%right SEMIC
-%left AND PLUS MINUS MULT DIV LESSEQUAL NEGATION EQ LESS
-%nonassoc IF ELSE
+
+%right SEMIC ARROW
+%nonassoc IF
+%left ELSE
+%left AND
+%left EQ
+%left LESS LESSEQUAL
+%left PLUS MINUS
+%left MULT DIV
+%nonassoc NEGATION
 
 %eop EOF
 
