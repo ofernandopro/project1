@@ -36,9 +36,3 @@ fun makeAnon (xs:(plcType * string) list, e:expr):expr =
           Anon(t,"$list",e')
         end
       end;
-
-(*
-ml-lex PlcLexer.lex
-ml-yacc PlcParser.yacc
-sml testParser.sml
-*)
