@@ -10,7 +10,9 @@
     | IF | THEN | ELSE
     | PLUS | MINUS | MULT | DIV | EQ | LESS | LESSEQUAL | NEGATION
     | LPAR | RPAR | LSBRACKET | RSBRACKET | LCBRACES | RCBRACES
+    | CONCAT
     | MATCH | WITH | END
+    | PRINT
     | SEMIC | ARROW | PIPE | UNDERLINE | COLON | COMMA
     | NAME of string | CINT of int | CBOOL of bool
     | NIL | BOOL | INT
@@ -40,9 +42,10 @@
 %left AND
 %left EQ
 %left LESS LESSEQUAL
+%right CONCAT
 %left PLUS MINUS
 %left MULT DIV
-%nonassoc NEGATION
+%nonassoc NEGATION PRINT
 %left LSBRACKET
 
 %eop EOF
@@ -75,6 +78,8 @@ Expr : AtomExpr (AtomExpr)
     | Expr AND Expr (Prim2("&&", Expr1, Expr2))
     | MATCH Expr WITH MatchExpr (Match(Expr, MatchExpr))
     | Expr LSBRACKET CINT RSBRACKET (Item(CINT, Expr))
+    | Expr CONCAT Expr (Prim2("::", Expr1, Expr2))
+    | PRINT Expr (Prim1("print", Expr))
 
 AtomExpr : Const (Const)
     | NAME (Var(NAME))

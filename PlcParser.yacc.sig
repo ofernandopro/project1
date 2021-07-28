@@ -17,9 +17,11 @@ val UNDERLINE:  'a * 'a -> (svalue,'a) token
 val PIPE:  'a * 'a -> (svalue,'a) token
 val ARROW:  'a * 'a -> (svalue,'a) token
 val SEMIC:  'a * 'a -> (svalue,'a) token
+val PRINT:  'a * 'a -> (svalue,'a) token
 val END:  'a * 'a -> (svalue,'a) token
 val WITH:  'a * 'a -> (svalue,'a) token
 val MATCH:  'a * 'a -> (svalue,'a) token
+val CONCAT:  'a * 'a -> (svalue,'a) token
 val RCBRACES:  'a * 'a -> (svalue,'a) token
 val LCBRACES:  'a * 'a -> (svalue,'a) token
 val RSBRACKET:  'a * 'a -> (svalue,'a) token
