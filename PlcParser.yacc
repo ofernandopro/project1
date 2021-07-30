@@ -16,10 +16,10 @@
     | SEMIC | ARROW | PIPE | UNDERLINE | COLON | COMMA
     | NAME of string | CINT of int | CBOOL of bool
     | NIL | BOOL | INT
-    | FUN | REC
+    | FUN | REC | FN | ARROWFUN
     | EOF
     | HD | TL | ISE
-    | FN | ARROWFUN
+    
 
 %nonterm Prog of expr 
     | Decl of expr

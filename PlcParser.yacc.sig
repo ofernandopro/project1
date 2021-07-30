@@ -2,12 +2,12 @@ signature PlcParser_TOKENS =
 sig
 type ('a,'b) token
 type svalue
-val ARROWFUN:  'a * 'a -> (svalue,'a) token
-val FN:  'a * 'a -> (svalue,'a) token
 val ISE:  'a * 'a -> (svalue,'a) token
 val TL:  'a * 'a -> (svalue,'a) token
 val HD:  'a * 'a -> (svalue,'a) token
 val EOF:  'a * 'a -> (svalue,'a) token
+val ARROWFUN:  'a * 'a -> (svalue,'a) token
+val FN:  'a * 'a -> (svalue,'a) token
 val REC:  'a * 'a -> (svalue,'a) token
 val FUN:  'a * 'a -> (svalue,'a) token
 val INT:  'a * 'a -> (svalue,'a) token
