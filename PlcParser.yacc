@@ -18,6 +18,7 @@
     | NIL | BOOL | INT
     | FUN | REC
     | EOF
+    | HD | TL | ISE
 
 %nonterm Prog of expr 
     | Decl of expr
@@ -45,7 +46,7 @@
 %right CONCAT
 %left PLUS MINUS
 %left MULT DIV
-%nonassoc NEGATION PRINT
+%nonassoc NEGATION PRINT HD TL ISE
 %left LSBRACKET
 
 %eop EOF
@@ -80,6 +81,9 @@ Expr : AtomExpr (AtomExpr)
     | Expr LSBRACKET CINT RSBRACKET (Item(CINT, Expr))
     | Expr CONCAT Expr (Prim2("::", Expr1, Expr2))
     | PRINT Expr (Prim1("print", Expr))
+    | HD Expr (Prim1("hd", Expr1))
+    | TL Expr (Prim1("tl", Expr1))
+    | ISE Expr (Prim1("ise", Expr1))
 
 AtomExpr : Const (Const)
     | NAME (Var(NAME))
