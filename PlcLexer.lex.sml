@@ -30,6 +30,9 @@ fun keyword (s, lpos, rpos) =
         | "Bool" => BOOL (lpos, rpos)
         | "Int" => INT (lpos, rpos)
         | "print" => PRINT (lpos, rpos)
+        | "hd" => HD (lpos, rpos)
+        | "tl" => TL (lpos, rpos)
+        | "ise" => ISE (lpos, rpos)
         | _ => NAME (s, lpos, rpos)
 
 val error = fn x => TextIO.output(TextIO.stdOut, x ^ "\n")
