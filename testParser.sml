@@ -18,7 +18,7 @@ Control.Print.stringDepth := 1000;
 
 open PlcFrontEnd;
 
-
+use "testParserCases.sml"
 
 (* Try to add a systematic way of using the test cases in
    testParserCases to stress test your parser *)
