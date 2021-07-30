@@ -17,6 +17,7 @@ fun keyword (s, lpos, rpos) =
         | "then" => THEN (lpos, rpos)
         | "else" => ELSE (lpos, rpos)
         | "fun" => FUN(lpos, rpos)
+        | "fn" => FN(lpos, rpos)
         | "rec" => REC(lpos, rpos)
         | "match" => MATCH (lpos, rpos)
         | "with" => WITH (lpos, rpos)
@@ -90,6 +91,7 @@ boolean=(true)|(false);
 "&&" => (AND(yypos, yypos));
 "<=" => (LESSEQUAL(yypos, yypos));
 "->" => (ARROW(yypos, yypos));
+"=>" => (ARROWFUN(yypos, yypos));
 "|" => (PIPE(yypos, yypos));
 "," => (COMMA(yypos, yypos));
 "::" => (CONCAT(yypos, yypos));

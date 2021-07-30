@@ -19,6 +19,7 @@
     | FUN | REC
     | EOF
     | HD | TL | ISE
+    | FN | ARROWFUN
 
 %nonterm Prog of expr 
     | Decl of expr
@@ -65,6 +66,7 @@ Decl: VAR NAME EQ Expr SEMIC Prog (Let(NAME, Expr, Prog))
     | FUN REC NAME Args COLON Type EQ Expr SEMIC Prog (makeFun(NAME, Args, Type, Expr, Prog))
 
 Expr : AtomExpr (AtomExpr)
+    | AppExpr (AppExpr)
     | IF Expr THEN Expr ELSE Expr (If(Expr1, Expr2, Expr3))
     | Expr PLUS Expr (Prim2("+", Expr1, Expr2))
     | Expr MINUS Expr (Prim2("-", Expr1, Expr2))
@@ -90,6 +92,7 @@ AtomExpr : Const (Const)
     | LCBRACES Prog RCBRACES (Prog)
     | LPAR Comps RPAR (List(Comps))
     | LPAR Expr RPAR (Expr)
+    | FN Args ARROWFUN Expr END (makeAnon(Args, Expr))
 
 Const : CINT (ConI(CINT))
     | CBOOL (ConB(CBOOL))
