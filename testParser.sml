@@ -9,6 +9,9 @@ use "PlcParserAux.sml";
 use "PlcParser.yacc.sig";
 use "PlcParser.yacc.sml";
 use "PlcLexer.lex.sml";
+use "Plc.sml";
+use "PlcChecker.sml";
+use "PlcInterp.sml";
 
 use "Parse.sml";
 
